@@ -1,15 +1,17 @@
 const express = require("express");
 const router = express.Router();
 
-const { Movie } = require("../models");
+const { Movie } = require("../models");  // Movie database model
 
-// GET all movies
+// GET ALL MOVIES
+// Returns every movie in the database
 router.get("/", async (req, res) => {
   const movies = await Movie.findAll();
   res.json(movies);
 });
 
-// GET movie by ID
+// GET MOVIE BY ID
+// Returns a single movie matching the URL id parameter
 router.get("/:id", async (req, res) => {
   const movie = await Movie.findByPk(req.params.id);
 
@@ -20,7 +22,8 @@ router.get("/:id", async (req, res) => {
   res.json(movie);
 });
 
-// CREATE movie
+// CREATE MOVIE
+// Adds a new movie using the request body JSON
 router.post("/", async (req, res) => {
   try {
     const movie = await Movie.create(req.body);
@@ -30,7 +33,8 @@ router.post("/", async (req, res) => {
   }
 });
 
-// UPDATE movie
+// UPDATE MOVIE
+// Modifies an existing movie by ID
 router.put("/:id", async (req, res) => {
   const movie = await Movie.findByPk(req.params.id);
 
@@ -42,7 +46,8 @@ router.put("/:id", async (req, res) => {
   res.json(movie);
 });
 
-// DELETE movie
+// DELETE MOVIE
+// Removes a movie from the database
 router.delete("/:id", async (req, res) => {
   const movie = await Movie.findByPk(req.params.id);
 
@@ -55,3 +60,4 @@ router.delete("/:id", async (req, res) => {
 });
 
 module.exports = router;
+

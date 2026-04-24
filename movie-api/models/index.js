@@ -1,31 +1,29 @@
-// Load environment variables
+// Load environment variables (database path)
 require("dotenv").config();
 
+// Import Sequelize ORM
 const { Sequelize } = require("sequelize");
 
-// Create Sequelize instance (SQLite database)
+// Create SQLite database connection
 const sequelize = new Sequelize({
   dialect: "sqlite",
   storage: process.env.DB_STORAGE || "./database.sqlite"
 });
 
-// Import models
+// Import model definitions
 const User = require("./user")(sequelize);
 const Movie = require("./movie")(sequelize);
 const Watchlist = require("./watchlist")(sequelize);
 
-// Create join table 
 const WatchlistMovie = sequelize.define("WatchlistMovie");
 
-// One user many watchlists
-User.hasMany(Watchlist);
+// Define relationships
+User.hasMany(Watchlist);           // One user can have many watchlists
+Watchlist.belongsTo(User);         // Each watchlist belongs to one user
 
-// Each watchlist belongs to one user
-Watchlist.belongsTo(User);
+Watchlist.belongsToMany(Movie, { through: WatchlistMovie }); // Watchlist has many movies
+Movie.belongsToMany(Watchlist, { through: WatchlistMovie }); // Movie appears in many watchlists
 
-// Many to many watchlists movies
-Watchlist.belongsToMany(Movie, { through: WatchlistMovie });
-Movie.belongsToMany(Watchlist, { through: WatchlistMovie });
-
-// Export everything
+// Export database and models for use in routes
 module.exports = { sequelize, User, Movie, Watchlist };
+

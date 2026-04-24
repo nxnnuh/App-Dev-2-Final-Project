@@ -1,5 +1,7 @@
-// Logs request method and URL
+// REQUEST LOGGER
+// Prints HTTP method and URL for every incoming request.
 module.exports = (req, res, next) => {
   console.log(`${req.method} ${req.url}`);
-  next();
+  next();  // Pass control to the next middleware/route
 };
+

@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 
+// Define Watchlist model schema
 module.exports = (sequelize) => {
   return sequelize.define("Watchlist", {
     // Watchlist name (required)
@@ -8,7 +9,8 @@ module.exports = (sequelize) => {
       allowNull: false
     },
 
-    // Optional description
+    // Optional description text
     description: DataTypes.STRING
   });
 };
+
