@@ -1,6 +1,6 @@
 # App-Dev-2-Final-Project
 
-#Project: Movie Watchlist API
+## Project: Movie Watchlist API
 The Movie Watchlist API is a RESTful backend application that allows users to create, manage, and organize their own movie watchlists.
 This project demonstrates a production-ready API with authentication, role-based authorization, and secure data handling.
 
@@ -12,7 +12,7 @@ Users can:
 - Perform actions based on their role (user/admin)
 
 
-# Technologies Used
+## Technologies Used
 - Node.js
 - Express.js
 - Sequelize (ORM)
@@ -55,7 +55,7 @@ admin - can delete movies and access all resources
 - WatchlistId
 - MovieId
 
-##Setup Instructions
+## Setup Instructions
 
 ### 1. Clone repository
 git clone https://github.com/nxnnuh/App-Dev-2-Final-Project.git
@@ -73,5 +73,5 @@ npm start
 ### 5. Run Tests
 npm test
 
-#base url
+# base url
 http://localhost:3000/api
